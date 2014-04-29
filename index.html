@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+  <title>Web Care</title>
+  <link rel="stylesheet" type="text/css" href="jslib/ext50/resources/ext-theme-crisp-all.css" />
+  <script type="text/javascript" src="jslib/ext50/ext-all.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+Ext.onReady(function(){
+  Ext.tip.QuickTipManager.init();
+  var bd = Ext.getBody();
+
+  /*
+   * ================  Simple form  =======================
+   */
+  var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+
+  var simple = Ext.widget({
+    xtype: 'form',
+    layout: 'form',
+    id: 'loginForm',
+    floating: true,
+    url: '/care_server/json/system!login',
+    frame: true,
+    title: 'Web Care - Doctor',
+    bodyPadding: '5 5 0',
+    width: 350,
+    tools: [
+      {
+        type: 'help',
+        handler: function(iconBtn){
+          Ext.Msg.alert('System', 'Please login with your <i><strong>Doctor</strong></i> account');
+        }
+      }
+    ],
+    fieldDefaults: {
+      msgTarget: 'under',
+      labelWidth: 75
+    },
+    defaultType: 'textfield',
+    items: [{
+      fieldLabel: 'User Name',
+      afterLabelTextTpl: required,
+      name: 'userName',
+      value: 'doctor',
+      allowBlank: false,
+      tooltip: 'Enter your user name'
+    },{
+      fieldLabel: 'Password',
+      afterLabelTextTpl: required,
+      inputType: 'password',
+      name: 'password',
+      value: '123456',
+      allowBlank: false,
+      tooltip: 'Enter your password'
+    },{
+      xtype: 'hidden',
+      name: 'type',
+      value: 1
+    }],
+    buttons: [{
+      text: 'Login',
+      handler: function() {
+        var formPanel = this.up('form');
+        if (formPanel.getForm().isValid()){
+          formPanel.setLoading(true);
+          Ext.Ajax.request({
+            url: formPanel.url,
+            params: formPanel.getValues(),
+            success: function(response){
+              var reply = Ext.decode(response.responseText);
+              console.log(reply);
+              if (reply.success){
+                location.href = 'main.html';
+              }else{
+                formPanel.setLoading(false);
+                Ext.Msg.alert('System Info', reply.msg);
+              }
+            },
+            failure: function(reply){
+              formPanel.setLoading(false);
+              if ("error" === reply){
+                Ext.Msg.alert('System Info', "Can not connect to server!");
+                return;
+              }
+
+              Ext.Msg.alert('System Info', reply.status + ': ' + reply.statusText);
+            },
+            callback: function(){
+//              console.log(arguments);
+            }
+          });
+        }
+      }
+    },{
+      text: 'Reset',
+      handler: function() {
+        this.up('form').getForm().reset();
+      }
+    }]
+  });
+
+  simple.render(document.body);
+});
+
+  </script>
+</body>
+</html>
