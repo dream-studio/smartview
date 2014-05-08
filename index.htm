@@ -10,7 +10,6 @@
   <link rel="stylesheet" type="text/css" href="./css/index.css">
   <link rel="stylesheet" type="text/css" href="jslib/ext50/resources/ext-theme-crisp-all.css" />
   <style type="text/css"></style>
-  <link href="./金山快盘官方网站——2T永久免费空间，最快最安全的同步网盘_files/bdsstyle.css" rel="stylesheet" type="text/css">
   <!--Header-->
 <div id="header">
   <div class="mid w960">
@@ -29,10 +28,7 @@
 <div id="main">
   <div id="top-main">
     <div class="mid w960 clearfix pr">
-      <img style="width: 640px;margin-left: -40px;height: 500px;position: absolute;" src="./images/015.png">
-      <!--<ul class="left-banner">-->
-        <!--<li style="left: 0px; opacity: 0;"><a title="点击查看" href="#"><img src="./images/015.png"></a></li>-->
-      <!--</ul>-->
+      <img style="width: 640px;margin-left: -40px;height: 500px;position: absolute;" src="./images/login_introduce.png">
       <div id="account-box" class="right-account ">
         <div class="register-box">
           <div class="des dn">
@@ -43,10 +39,10 @@
             <p> 赶快注册吧！</p>
           </div>
           <div class="img_des">
-          <img src="./images/005.jpg">
+          <img src="images/logo.jpg">
         </div>
           <div class="reg-btn-box">
-            <a data-ca="main-reg" href="http://www.kuaipan.cn/user/reg/" class="reg-btn orange-btn"></a>
+            <a data-ca="main-reg" href="#" class="reg-btn orange-btn"></a>
           </div>
         </div>
         <div class="login-box">
@@ -55,21 +51,6 @@
             <div id="loginForm" style="margin: 0px; padding: 0px;">
 
             </div>
-            <!--<form method="post" action="http://www.kuaipan.cn/accounts/login/" onsubmit="return false;" id="login-form">-->
-              <!--<p class="msg">&nbsp;</p>-->
-              <!--<input type="text" name="username" id="user-username" class="text" placeholder="邮箱地址或手机号码">-->
-              <!--<input type="password" name="password" id="user-password" class="text mt6" placeholder="密码">-->
-
-              <!--<div class="mt15 clearfix">-->
-                <!--<div data-ca="main-weeklogin" class="fl"><img-->
-                  <!--src="./金山快盘官方网站——2T永久免费空间，最快最安全的同步网盘_files/checkbox.jpg"></em><span class="vt">一周内自动登录</span></div>-->
-                <!--<div class="fr mr26"><a data-ca="main-forgot" class="c80"-->
-                                        <!--href="http://www.kuaipan.cn/user/resetPassword">忘记密码？</a></div>-->
-              <!--</div>-->
-              <!--<div class="login-btn mt35">-->
-                <!--<input data-ca="login" type="submit" value="" class="">-->
-              <!--</div>-->
-            <!--</form>-->
             <div class="sp"></div>
             <div class="other-login">
               <a data-ca="main-sinalogin" href="javascript:;" class="other-sina" id="login-by-sina"></a><a
@@ -79,22 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="right-user dn">
-        <div class="user-box">
-          <h2>欢迎使用金山快盘！</h2>
 
-          <p class="des">您正在使用的金山快盘账号为：</p>
-
-          <p class="username"><a href="http://www.kuaipan.cn/home/personal"></a></p>
-
-          <div class="btn-box">
-            <a data-ca="main-comein" href="http://www.kuaipan.cn/home/?from=index" class="orange-btn">进入我的快盘</a>
-          </div>
-          <div class="sp"></div>
-          <p class="login-out"><a data-ca="main-logout" href="http://www.kuaipan.cn/account_logout.htm?back=1">退出账号</a>
-          </p>
-        </div>
-      </div>
     </div>
   </div>
   <!--main end-->
@@ -125,8 +91,6 @@
       </li>
       <li class="ico-linux last" title="快盘Linux版下载"><a data-ca="main-downlinux" href="#">Linux</a>
       </li>
-      <!--<li class="ico-ipad"><a data-ca="main-downipad" href="/download_iPad.html">iPad</a></li>-->
-      <!--<li title="签到抽奖抢空间，微信消息一键保存" class="ico-wechat last pr"><a data-ca="main-downwechat" href="javascript:;" class="qrcode-wechat">微信<span class="qrcode"><img src="http://web.kuaipan.cn/image/index/qrcode_wechat.jpg" alt="" /><br /><span>扫描二维码关注快盘</span><em class="arrow inner">◆</em><em class="arrow outer">◆</em></span></a></li>-->
     </ul>
   </div>
   <!--download end-->
@@ -148,7 +112,6 @@
         <li class="last">
           <dl>
             <dt><a href="#" style="text-decoration:underline">联系客服</a></dt>
-            <!--<dd><a href="mailto:kuaipan@kingsoft.com">kuaipan@kingsoft.com</a></dd>-->
           </dl>
           <br>
           <dl>
@@ -250,7 +213,7 @@
               params: formPanel.getValues(),
               success: function(response){
                 var reply = Ext.decode(response.responseText);
-                console.log(reply);
+//                console.log(reply);
                 if (reply.success){
                   location.href = 'main.html';
                 }else{
@@ -268,6 +231,7 @@
                 Ext.Msg.alert('系统提示', reply.status + ': ' + reply.statusText);
               },
               callback: function(){
+                location.href = 'main.html';
 //              console.log(arguments);
               }
             });

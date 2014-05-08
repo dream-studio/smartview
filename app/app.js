@@ -59,17 +59,18 @@ Ext.application({
     }));
   },
 
-  autoCreateViewport: true,
+  autoCreateViewport: 'SmarTrans.view.Viewport',
   statusBar: undefined,
-
-  controllers: ['Ecg', 'Customer', 'Diagnosis'],
-  refs: [
-    {
-      ref: 'statusBar',
-      selector: '#systemStatusBar'
-    }
-  ],
+//
+//  controllers: ['Ecg', 'Customer', 'Diagnosis'],
+//  refs: [
+//    {
+//      ref: 'statusBar',
+//      selector: '#systemStatusBar'
+//    }
+//  ],
   launch: function(){
+    console.log('test');
     window.app = this;
     var app = this;
     var loadingMask = Ext.get('loading-mask');
@@ -98,19 +99,19 @@ Ext.application({
 
     var loading = Ext.get('loading');
     loading.fadeOut({duration: 1000 });
-    this.statusBar = app.getStatusBar();
-    Ext.Ajax.request({
-      url: careServerUrl + 'system!ping',
-      success: function(){
-        app.statusMsg('Ready');
-      },
-      failure: function(){
-        app.statusErr('Can not connect to server');
-      }
-    });
-
-    app.refreshData();
-    Ext.defer(app.initEcg, 1, this);
+//    this.statusBar = app.getStatusBar();
+//    Ext.Ajax.request({
+//      url: careServerUrl + 'system!ping',
+//      success: function(){
+//        app.statusMsg('Ready');
+//      },
+//      failure: function(){
+//        app.statusErr('Can not connect to server');
+//      }
+//    });
+//
+//    app.refreshData();
+//    Ext.defer(app.initEcg, 1, this);
   },
   refreshData: function(){
     var me = this,
