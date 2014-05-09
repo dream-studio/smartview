@@ -51,7 +51,7 @@
     #loading{
       height:auto;
       position:absolute;
-      left:45%;
+      left:40%;
       top:40%;
       padding:2px;
       z-index:20001;
@@ -113,14 +113,19 @@
       list-style: inherit !important;
     }
 
+html body{
+  padding: 0;
+  margin: 0;
+}
   </style>
 </head>
 <body>
   <div id="loading-mask" style=""></div>
   <div id="loading">
   <div class="loading-indicator">
-  <img src="images/loading32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>货运通 - <a href="#">www.smartrans.com.cn</a>
-  <br /><span id="loading-msg">Loading styles and images...</span>
+    <img src="images/loading32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>
+    <!--货运通 - <a href="#">www.smartrans.com.cn</a>-->
+    <br /><span id="loading-msg">Loading styles and images...</span>
   </div>
   </div>
 
@@ -132,8 +137,17 @@
   <script type="text/javascript" src="jslib/ext_fixed.js"></script>
   <script type="text/javascript" src="jslib/ext_widget.js"></script>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading UI Components...';</script>
+  <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading Baidu Map Components...';</script>
+  <script src="http://api.map.baidu.com/api?v1.5&ak=b5hGALWK13e7y7u2zBn0AgTb"></script>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Initializing...';</script>
-
+  <script type="text/javascript">
+Ext.Loader.setConfig({
+  enabled: true,
+  paths: {
+    'Ext.ux': 'jslib/extux'
+  }
+});
+  </script>
   <script type="text/javascript" src="app/app.js"></script>
 </body>
 </html>

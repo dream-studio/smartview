@@ -8,7 +8,7 @@ Ext.apply(Ext.Date, {
 })
 
 Ext.application({
-  name: 'SmarTrans',
+  name: 'SmartView',
   /***
    * response status codes.
    */
@@ -59,7 +59,7 @@ Ext.application({
     }));
   },
 
-  autoCreateViewport: 'SmarTrans.view.Viewport',
+  autoCreateViewport: 'SmartView.view.Viewport',
   statusBar: undefined,
 //
 //  controllers: ['Ecg', 'Customer', 'Diagnosis'],
@@ -70,7 +70,6 @@ Ext.application({
 //    }
 //  ],
   launch: function(){
-    console.log('test');
     window.app = this;
     var app = this;
     var loadingMask = Ext.get('loading-mask');
