@@ -4,6 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="renderer" content="webkit">
+  <link rel="stylesheet" type="text/css" href="jslib/ext50/resources/ext-theme-crisp-all.css" />
   <style type="text/css">
 
     #all-demos dd {
@@ -124,12 +125,12 @@ html body{
   <div id="loading">
   <div class="loading-indicator">
     <img src="images/loading32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>
-    <!--货运通 - <a href="#">www.smartrans.com.cn</a>-->
+    货运通 - <a href="#">www.smartrans.com.cn</a>
     <br /><span id="loading-msg">Loading styles and images...</span>
   </div>
   </div>
 
-  <div id="code-load" style="display:none;">
+  <div id="code-load" style="display:none;"></div>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading Core API...';</script>
   <script type="text/javascript" src="jslib/ext50/ext-all-debug.js"></script>
   <!--<script type="text/javascript" src="jslib/ext42/ext-all-debug-w-comments.js"></script>-->
@@ -138,7 +139,9 @@ html body{
   <script type="text/javascript" src="jslib/ext_widget.js"></script>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading UI Components...';</script>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading Baidu Map Components...';</script>
-  <script src="http://api.map.baidu.com/api?v1.5&ak=b5hGALWK13e7y7u2zBn0AgTb"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v1.5&ak=b5hGALWK13e7y7u2zBn0AgTb"></script>
+  <script type="text/javascript" src="jslib/baidumap_fixed.js"></script>
+  <script type="text/javascript" src="jslib/baidumap/RichMarker_min.js"></script>
   <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Initializing...';</script>
   <script type="text/javascript">
 Ext.Loader.setConfig({

@@ -1,6 +1,6 @@
-Ext.define('SmartView.view.cargo.Panel', {
+Ext.define('SmartView.view.order.Panel', {
   extend: 'Ext.panel.Panel',
-  alias: 'widget.cargopanel',
+  alias: 'widget.orderpanel',
   initComponent: function(){
     this.callParent();
   }

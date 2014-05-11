@@ -4,7 +4,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="renderer" content="webkit">
-  <link rel="stylesheet" type="text/css" href="jslib/ext50/resources/ext-theme-crisp-all.css" />
   <title>货运通</title>
   <style type="text/css">
 * {
@@ -188,7 +187,7 @@ li {
 <div class="header">
   <p class="logo"><a href="#" title="货运通" ></a></p>
   <ul id="nav">
-    <li><a href="#">首页</a>
+    <li><a id="myMap" href="javascript:void(0)" onclick="changeCard(this)">首页</a>
     </li>
     <li class="navDrop"><a href="#">欢迎回来，***</a></li>
   </ul>
@@ -201,13 +200,13 @@ li {
 
 <div class="left-side">
   <ul class="nav">
-    <li><a id="myFavoriteBtn" href="#"><span>我的关注</span></a>
+    <li><a id="myFavoriteBtn" href="javascript:void(0)" onclick="changeCard(this)"><span>我的关注</span></a>
     </li>
-    <li><a id="myCargo" href="#"><span>我的货源</span></a>
+    <li><a id="myCargo" href="javascript:void(0)" onclick="changeCard(this)"><span>我的货源</span></a>
     </li>
-    <li><a id="myOrder" href="#"><span>我的订单</span></a>
+    <li><a id="myOrder" href="javascript:void(0)" onclick="changeCard(this)"><span>我的订单</span></a>
     </li>
-    <li><a id="myPoints" href="#" ><span>积分记录</span></a>
+    <li><a id="myPoints" href="javascript:void(0)" onclick="changeCard(this)"><span>积分记录</span></a>
     </li>
   </ul>
 
@@ -215,10 +214,32 @@ li {
 
 <div id="mainer">
   <iframe id="appFrame" style="height: 100%; width: 100%; border: 0;" src="app_main.html">
-
+    <!-- app iframe -->
 
   </iframe>
 </div>
-
 </div>
+<script type="text/javascript">
+  fDocument = document.getElementById('appFrame').contentDocument;
+  fWindow = document.getElementById('appFrame').contentWindow;;
+
+  onAppLaunch = function(app){
+    console.log('trigger app launch on main page');
+    window.app = app;
+  }
+
+  var lastSelected = undefined;
+
+  changeCard = function(aTag){
+    if (aTag.id){
+      app.viewport.setActiveItem(aTag.id);
+      aTag.className = 'selected';
+
+      if (lastSelected){
+        lastSelected.className = '';
+      }
+      lastSelected = aTag;
+    }
+  }
+</script>
 </body></html>
