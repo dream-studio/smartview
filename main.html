@@ -224,8 +224,8 @@ li {
   fWindow = document.getElementById('appFrame').contentWindow;;
 
   onAppLaunch = function(app){
-    console.log('trigger app launch on main page');
     window.app = app;
+    window.Ext = window.Ext || fWindow.Ext;
   }
 
   var lastSelected = undefined;

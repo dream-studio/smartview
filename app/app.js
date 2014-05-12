@@ -62,13 +62,13 @@ Ext.application({
   autoCreateViewport: 'SmartView.view.Viewport',
   statusBar: undefined,
 
-  controllers: ['map'],
-  refs: [
-    {
-      ref: 'statusBar',
-      selector: '#systemStatusBar'
-    }
-  ],
+//  controllers: ['map'],
+//  refs: [
+//    {
+//      ref: 'statusBar',
+//      selector: '#systemStatusBar'
+//    }
+//  ],
   launch: function(){
     window.app = this;
     var app = this;
@@ -98,19 +98,19 @@ Ext.application({
 
     var loading = Ext.get('loading');
     loading.fadeOut({duration: 1000 });
-    this.statusBar = app.getStatusBar();
-    Ext.Ajax.request({
-      url: smarTransUrl + 'system!ping',
-      success: function(){
-        app.statusMsg('Ready');
-      },
-      failure: function(){
-        app.statusErr('Can not connect to server');
-      }
-    });
+//    this.statusBar = app.getStatusBar();
+//    Ext.Ajax.request({
+//      url: smarTransUrl + 'system!ping',
+//      success: function(){
+//        app.statusMsg('Ready');
+//      },
+//      failure: function(){
+//        app.statusErr('Can not connect to server');
+//      }
+//    });
 
-    app.refreshData();
-    Ext.defer(app.initEcg, 1, this);
+//    app.refreshData();
+//    Ext.defer(app.initEcg, 1, this);
 
     // seems contains by other iframe app
     if (window.parent !== window && window.parent.onAppLaunch){
