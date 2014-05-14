@@ -1,0 +1,54 @@
+/*
+  baidu rich marker
+*/
+div.show-class{
+  top: 20px;
+  opacity: 1;
+}
+
+.dmarker-anim {
+  -webkit-transition: all .5s ease-in;
+  -moz-transition: all .5s ease-in;
+  -o-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+}
+
+.dmarker-main {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  border: 1px solid rgba(72, 106, 170, 0.5);
+  padding: 5px;
+  width: 120px;
+  height: 60px;
+  background-color: aliceblue;
+  backface-visibility: hidden; /* fix flash bug when animation playing */
+  box-shadow: 0 0 8px rgba(72, 106, 170, 0.5);
+  border-radius: 5px;
+  -moz-backface-visibility: hidden;
+  -moz-box-shadow: 0 0 8px rgba(72, 106, 170, 0.5);
+  -moz-border-radius: 5px;
+  -webkit-backface-visibility: hidden;
+  -webkit-box-shadow: 0 0 8px rgba(72, 106, 170, 0.5);
+  -webkit-border-radius: 5px;
+}
+
+.dmarker-arrow-outter {
+  position: absolute;
+  height: 15px;
+  overflow: hidden;
+  width: 20px;
+  left: 50px;
+  bottom: -13px;
+}
+
+.dmarker-entry-trangle {
+  position: absolute;
+  top: -12px;
+  border: 1px solid rgba(72, 106, 170, 0.5);
+  background-color: aliceblue;
+  -webkit-transform: rotate(45deg);
+  -webkit-box-shadow: 0 0 5px rgba(72, 106, 170, 0.5);
+  height: 20px;
+  width: 20px;
+}

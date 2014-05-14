@@ -36,7 +36,6 @@ Ext.define('Ext.ux.map.Panel', {
     }
 
     var map;
-    console.log(BMap, me, me.body, me.body.el, me.body.el.dom);
     me.map = map = new BMap.Map(me.body.el.dom);
     map.enableScrollWheelZoom();
 
@@ -66,14 +65,39 @@ Ext.define('Ext.ux.map.Panel', {
 
     me.fireEvent('aftermapload', me);
   },
-  addMarker: function(lng, lat, opts){
+  /**
+   * example: addMarker(113.561447, 22.256915,'<div>test</div>', {onmousedown: function(e){console.log("MouseDown : " + e.point.lng + " , " + e.point.lat + " ; " + e.pixel.x + " , " + e.pixel.y)}});
+   * @param lng
+   * @param lat
+   * @param html
+   * @param listeners
+   * @returns {window.BMapLib.RichMarker}
+   */
+  addMarker: function(lng, lat, html, listeners){
     var me = this,
-      point = new BMap.Point(116.30816, 40.056863),
-      richMarker = new BMapLib.RichMarker(me.markerTpl.apply(opts), point, {
-        "anchor": new BMap.Size(-16, -16)
+      point = new BMap.Point(lng, lat),
+      richMarker = new BMapLib.RichMarker(me.markerTpl.apply({content: html}), point, {
+        'anchor': new BMap.Size(-63, -90)
       });
 
     me.map.addOverlay(richMarker);
+    var markerBody = richMarker.K.children[0];
+    // animation
+    markerBody.className = 'show-class ' + markerBody.className;
+
+    if (listeners){
+      Ext.Object.each(listeners, function(k, func){
+        richMarker.addEventListener(k, func);
+      });
+    }
+
+//    richMarker.addEventListener('onclick', function(e){
+//      console.log('onclick!!', markerBody.offsetHeight);
+//      300 - markerBody.offsetHeight
+//      markerBody.style.height = '300px';
+//      markerBody.style.top = '-220px';
+//    });
+
     return richMarker;
   },
   removeMarker: function(marker){
