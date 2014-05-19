@@ -2,17 +2,38 @@ Ext.define('SmartView.view.Viewport', {
   extend: 'Ext.container.Viewport',
   layout: 'fit',
   requires: [
-    'Ext.ux.map.Panel',
-    'SmartView.view.cargo.Panel',
-    'SmartView.view.order.Panel',
+    'SmartView.view.map.MapPanel',
+    'SmartView.view.cargo.CargoPanel',
+    'SmartView.view.order.OrderPanel',
     'Ext.ux.statusbar.StatusBar'
   ],
   initComponent: function () {
     var me = this;
     this.items = [
       {
+        id: 'mainPanel',
         xtype: 'panel',
         layout: 'card',
+        defaults: {
+          border: false
+        },
+        dockedItems: [
+          {
+            id: 'systemStatusBar',
+            xtype: 'statusbar',
+            dock: 'bottom',
+            height: 21,
+            border: false,
+            defaultText: 'Default status',
+            style: {
+              fontSize: '12px'
+            },
+    //        statusAlign: 'right', // the magic config
+            text: 'Connecting to server...',
+            iconCls: 'x-status-busy',
+            items: []
+          }
+        ],
         items: [
           {
             xtype: 'mappanel',
@@ -25,8 +46,7 @@ Ext.define('SmartView.view.Viewport', {
             id: 'myCargo',
             title: '我的货物',
             html: 'on building...'
-          }
-          ,
+          },
           {
             xtype: 'orderpanel',
             id: 'myOrder',
@@ -53,21 +73,9 @@ Ext.define('SmartView.view.Viewport', {
 //    ];
     this.callParent();
 
-    this.setDocked({
-      id: 'systemStatusBar',
-      xtype: 'toolbar',
-      dock: 'bottom',
-      defaultText: 'Default status',
-//        statusAlign: 'right', // the magic config
-      text: 'Connecting to server...',
-      iconCls: 'x-status-busy',
-      items: [{
-        text: 'About us'
-      }]
-    }, true) ;
   },
   // override setActiveItem
-  setActiveItem: function(){
-
+  setActiveItem: function(item){
+    return this.down('#mainPanel').getLayout().setActiveItem(item);
   }
 });

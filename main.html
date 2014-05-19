@@ -156,20 +156,20 @@ li {
   zoom: 1;
 }
 
-#myFavoriteBtn span{
+#favorite span{
   background: url(./images/my_favorite.png) no-repeat center 14px;
 }
 
-#myCargo span{
+#cargo span{
   background: url(./images/my_favorite.png) no-repeat center 14px;
 }
 
-#myOrder span{
+#order span{
   background: url(./images/my_favorite.png) no-repeat center 14px;
 }
 
 
-#myPoints span{
+#points span{
   background: url(./images/my_favorite.png) no-repeat center 14px;
 }
 
@@ -187,7 +187,7 @@ li {
 <div class="header">
   <p class="logo"><a href="#" title="货运通" ></a></p>
   <ul id="nav">
-    <li><a id="myMap" href="javascript:void(0)" onclick="changeCard(this)">首页</a>
+    <li><a id="home" href="javascript:void(0)" onclick="changeCard(this)">首页</a>
     </li>
     <li class="navDrop"><a href="#">欢迎回来，***</a></li>
   </ul>
@@ -200,13 +200,13 @@ li {
 
 <div class="left-side">
   <ul class="nav">
-    <li><a id="myFavoriteBtn" href="javascript:void(0)" onclick="changeCard(this)"><span>我的关注</span></a>
+    <li><a id="favorite" href="javascript:void(0)" onclick="changeCard(this)"><span>我的关注</span></a>
     </li>
-    <li><a id="myCargo" href="javascript:void(0)" onclick="changeCard(this)"><span>我的货源</span></a>
+    <li><a id="cargo" href="javascript:void(0)" onclick="changeCard(this)"><span>我的货源</span></a>
     </li>
-    <li><a id="myOrder" href="javascript:void(0)" onclick="changeCard(this)"><span>我的订单</span></a>
+    <li><a id="order" href="javascript:void(0)" onclick="changeCard(this)"><span>我的订单</span></a>
     </li>
-    <li><a id="myPoints" href="javascript:void(0)" onclick="changeCard(this)"><span>积分记录</span></a>
+    <li><a id="points" href="javascript:void(0)" onclick="changeCard(this)"><span>积分记录</span></a>
     </li>
   </ul>
 
@@ -233,7 +233,8 @@ li {
 
   changeCard = function(aTag){
     if (aTag.id){
-      app.viewport.setActiveItem(aTag.id);
+      app.redirectTo(aTag.id);
+//        .viewport.setActiveItem(aTag.id);
       aTag.className = 'selected';
 
       if (lastSelected){

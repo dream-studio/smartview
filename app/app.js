@@ -5,7 +5,7 @@ var smarTransUrl = '/smartrans/json/';
 
 Ext.apply(Ext.Date, {
   defaultFormat: 'Y-m-d'
-})
+});
 
 Ext.application({
   name: 'SmartView',
@@ -59,16 +59,34 @@ Ext.application({
     }));
   },
 
+  defaultToken : 'home',
+  routes : {
+    'home' : 'onHome',
+    'order' : 'onOrder',
+    'cargo' : 'onCargo'
+  },
+
+  onHome: function() {
+    this.viewport.setActiveItem('myMap');
+  },
+  onOrder: function() {
+    this.viewport.setActiveItem('myOrder');
+  },
+  onCargo: function() {
+    this.viewport.setActiveItem('myCargo');
+  },
+
   autoCreateViewport: 'SmartView.view.Viewport',
   statusBar: undefined,
 
 //  controllers: ['map'],
-//  refs: [
-//    {
-//      ref: 'statusBar',
-//      selector: '#systemStatusBar'
-//    }
-//  ],
+//  controllers: ['MapController'],
+  refs: [
+    {
+      ref: 'statusBar',
+      selector: '#systemStatusBar'
+    }
+  ],
   launch: function(){
     window.app = this;
     var app = this;
@@ -98,16 +116,16 @@ Ext.application({
 
     var loading = Ext.get('loading');
     loading.fadeOut({duration: 1000 });
-//    this.statusBar = app.getStatusBar();
-//    Ext.Ajax.request({
-//      url: smarTransUrl + 'system!ping',
-//      success: function(){
-//        app.statusMsg('Ready');
-//      },
-//      failure: function(){
-//        app.statusErr('Can not connect to server');
-//      }
-//    });
+    this.statusBar = app.getStatusBar();
+    Ext.Ajax.request({
+      url: smarTransUrl + 'system!ping',
+      success: function(){
+        app.statusMsg('Ready');
+      },
+      failure: function(){
+        app.statusErr('Can not connect to server');
+      }
+    });
 
 //    app.refreshData();
 //    Ext.defer(app.initEcg, 1, this);
