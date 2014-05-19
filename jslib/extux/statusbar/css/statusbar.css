@@ -107,8 +107,10 @@
 /* StatusBar form validation example styles */
 
 .x-statusbar .x-status-error {
-    color: #C33;
-    background-image: url(../images/exclamation.gif);
+  color: #C33;
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/exclamation.png);
 }
 .x-statusbar .x-status-valid {
     background-image: url(../images/accept.png);
