@@ -16,6 +16,8 @@ Ext.define('Ext.ux.map.Panel', {
   scaleControl: undefined,
   overviewMapControl: undefined,
   mapTypeControl: undefined,
+  mapLoading: false,
+  mapLoaded: false,
 
   initComponent: function(){
     var me = this;
@@ -23,7 +25,7 @@ Ext.define('Ext.ux.map.Panel', {
 
     me.addStateEvents('aftermapload');
   },
-  // override Ext.util.Renderer.finishRender
+  // override Ext.util.Renderer.afterLayout
   afterLayout: function(){
     var me = this;
     me.callParent();
@@ -32,12 +34,19 @@ Ext.define('Ext.ux.map.Panel', {
       (BMap);
     }catch(e){
       me.update('<div style="text-align:center;font-size:20pt;line-height: ' + me.body.el.getHeight() + 'px; ">无法加载百度地图控件，请联系管理员</div>');
+      me.mapLoaded = false;
       return;
     }
 
+    if (me.mapLoaded || me.mapLoading){
+      return;
+    }
+
+    me.mapLoading = true;
     var map;
     me.map = map = new BMap.Map(me.body.el.dom);
     map.enableScrollWheelZoom();
+//    map.disableAutoResize();
 
     if (me.enableNavigation){
       me.navigationControl = new BMap.NavigationControl();
@@ -64,6 +73,9 @@ Ext.define('Ext.ux.map.Panel', {
     }
 
     me.fireEvent('aftermapload', me);
+
+    me.mapLoading = false;
+    me.mapLoaded = true;
   },
   /**
    * example: addMarker(113.561447, 22.256915,'<div>test</div>', {onmousedown: function(e){console.log("MouseDown : " + e.point.lng + " , " + e.point.lat + " ; " + e.pixel.x + " , " + e.pixel.y)}});
@@ -101,6 +113,7 @@ Ext.define('Ext.ux.map.Panel', {
     return richMarker;
   },
   removeMarker: function(marker){
+    var me = this;
     me.map.removeOverlay(marker);
   }
 });
