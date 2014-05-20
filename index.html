@@ -163,7 +163,7 @@
       layout: 'form',
       id: 'loginForm',
       floating: true,
-      url: '/care_server/json/system!login',
+      url: '/smartrans/json/system!login',
       frame: true,
       title: '货运通 - 货主登录',
       bodyPadding: '5 5 0',
@@ -204,46 +204,56 @@
         name: 'type',
         value: 1
       }],
-      buttons: [{
-        text: 'Login',
-        handler: function() {
-          var formPanel = this.up('form');
-          if (formPanel.getForm().isValid()){
-            formPanel.setLoading(true);
-            Ext.Ajax.request({
-              url: formPanel.url,
-              params: formPanel.getValues(),
-              success: function(response){
-                var reply = Ext.decode(response.responseText);
+      dockedItems: [{
+        xtype: 'toolbar',
+        dock: 'bottom',
+        ui: 'footer',
+        items: [
+          {
+            xtype: 'container',
+            style: {
+              paddingLeft: '10px'
+            },
+            html: '<a href="注册新用户" style="color: #0a67ab">注册新用户</a>'
+          },
+          '->',
+          {
+            text: '登录',
+            handler: function() {
+              var formPanel = this.up('form');
+              if (formPanel.getForm().isValid()){
+                formPanel.setLoading(true);
+                Ext.Ajax.request({
+                  url: formPanel.url,
+                  params: formPanel.getValues(),
+                  success: function(response){
+                    var reply = Ext.decode(response.responseText);
 //                console.log(reply);
-                if (reply.success){
-                  location.href = 'main.html';
-                }else{
-                  formPanel.setLoading(false);
-                  Ext.Msg.alert('系统提示', reply.msg);
-                }
-              },
-              failure: function(reply){
-                formPanel.setLoading(false);
-                if ("error" === reply){
-                  Ext.Msg.alert('系统提示', "无法连接服务器，请检查您的网络!");
-                  return;
-                }
+                    if (reply.success){
+                      location.href = 'main.html';
+                    }else{
+                      formPanel.setLoading(false);
+                      Ext.Msg.alert('系统提示', reply.msg);
+                    }
+                  },
+                  failure: function(reply){
+                    formPanel.setLoading(false);
+                    if ("error" === reply){
+                      Ext.Msg.alert('系统提示', "无法连接服务器，请检查您的网络!");
+                      return;
+                    }
 
-                Ext.Msg.alert('系统提示', reply.status + ': ' + reply.statusText);
-              },
-              callback: function(){
-                location.href = 'main.html';
+                    Ext.Msg.alert('系统提示', reply.status + ': ' + reply.statusText);
+                  },
+                  callback: function(){
+                    location.href = 'main.html';
 //              console.log(arguments);
+                  }
+                });
               }
-            });
+            }
           }
-        }
-      },{
-        text: 'Reset',
-        handler: function() {
-          this.up('form').getForm().reset();
-        }
+        ]
       }]
     });
 
