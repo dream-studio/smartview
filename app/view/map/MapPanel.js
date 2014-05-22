@@ -20,7 +20,6 @@ Ext.define('SmartView.view.map.MapPanel', {
   mapTypeControl: undefined,
   mapLoading: false,
   mapLoaded: false,
-
   initComponent: function(){
     var me = this;
 
@@ -30,8 +29,6 @@ Ext.define('SmartView.view.map.MapPanel', {
   },
   // override Ext.util.Renderer.afterLayout
   afterLayout: function(){
-    console.log('after layout', this.mapLoaded);
-
     var me = this;
     me.callParent();
 

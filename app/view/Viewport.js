@@ -13,7 +13,10 @@ Ext.define('SmartView.view.Viewport', {
       {
         id: 'mainPanel',
         xtype: 'panel',
-        layout: 'card',
+        layout: {
+          type: 'card',
+          deferredRender: true
+        },
         defaults: {
           border: false
         },
@@ -36,6 +39,10 @@ Ext.define('SmartView.view.Viewport', {
         ],
         items: [
           {
+            xtype: 'container',
+            html: 'empty container'
+          },
+          {
             xtype: 'mappanel',
             id: 'myMap',
             header: false,
@@ -56,21 +63,6 @@ Ext.define('SmartView.view.Viewport', {
         ]
       }
     ];
-//
-//    this.bbar = [
-//      {
-//        id: 'systemStatusBar',
-//        xtype: 'toolbar',
-//        dock: 'bottom',
-//        defaultText: 'Default status',
-////        statusAlign: 'right', // the magic config
-//        text: 'Connecting to server...',
-//        iconCls: 'x-status-busy',
-//        items: [{
-//          text: 'About us'
-//        }]
-//      }
-//    ];
     this.callParent();
 
   },

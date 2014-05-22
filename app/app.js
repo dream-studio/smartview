@@ -59,11 +59,19 @@ Ext.application({
     }));
   },
 
-  defaultToken : 'home',
+  defaultToken: 'home',
   routes : {
     'home' : 'onHome',
+    'personal': 'onHome',
     'order' : 'onOrder',
     'cargo' : 'onCargo'
+  },
+  listen : {
+    controller : {
+      '#' : {
+        unmatchedroute : 'onUnmatchedRoute'
+      }
+    }
   },
 
   onHome: function() {
@@ -74,6 +82,10 @@ Ext.application({
   },
   onCargo: function() {
     this.viewport.setActiveItem('myCargo');
+  },
+  onUnmatchedRoute: function(hash){
+    console.error('unmatched any page', hash);
+//    this.redirectTo('home');
   },
 
   autoCreateViewport: 'SmartView.view.Viewport',
