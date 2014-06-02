@@ -67,25 +67,28 @@ Ext.define('SmartView.view.map.MapPanel', {
       map.addControl(me.mapTypeControl);
     }
 
+    map.addEventListener("load", function(){
+
+      // fixed bug of map can't zoom to specified region when container switch to hidden during map initialing
+      var p = map.getBounds().toSpan();
+      if (p.lat === 0 && p.lng === 0){
+        me.mapLoading = false;
+        me.mapLoaded = false;
+        return;
+      }
+
+      me.fireEvent('aftermapload', me);
+
+      me.mapLoading = false;
+      me.mapLoaded = true;
+    });
+
     if (Ext.isEmpty(me.city)){
       // 默认珠海市
       map.centerAndZoom(new BMap.Point(113.562447, 22.256915), 13);
     }else{
       map.centerAndZoom(me.city);
     }
-
-    // fixed bug of map can't zoom to specified region when container switch to hidden during map initialing
-    var p = map.getBounds().toSpan();
-    if (p.lat === 0 && p.lng === 0){
-      me.mapLoading = false;
-      me.mapLoaded = false;
-      return;
-    }
-
-    me.fireEvent('aftermapload', me);
-
-    me.mapLoading = false;
-    me.mapLoaded = true;
   },
   /**
    * example: addMarker(113.561447, 22.256915,'<div>test</div>', {onmousedown: function(e){console.log("MouseDown : " + e.point.lng + " , " + e.point.lat + " ; " + e.pixel.x + " , " + e.pixel.y)}});

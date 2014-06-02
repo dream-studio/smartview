@@ -38,10 +38,10 @@ Ext.define('SmartView.view.Viewport', {
           }
         ],
         items: [
-          {
-            xtype: 'container',
-            html: 'empty container'
-          },
+//          {
+//            xtype: 'container',
+//            html: 'empty container'
+//          },
           {
             xtype: 'mappanel',
             id: 'myMap',
@@ -51,8 +51,7 @@ Ext.define('SmartView.view.Viewport', {
           {
             xtype: 'cargopanel',
             id: 'myCargo',
-            title: '我的货物',
-            html: 'on building...'
+            title: '我的货物'
           },
           {
             xtype: 'orderpanel',

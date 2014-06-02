@@ -5,9 +5,9 @@ Ext.define('SmartView.controller.MapController', {
   init: function() {
     this.control({
       '#': {
-//        afterrender: function(){
-//          console.log('map rendered!!');
-//        }
+        aftermapload: function(){
+          console.log('on map load');
+        }
       }
     })
   },
